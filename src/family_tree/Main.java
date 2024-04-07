@@ -3,13 +3,28 @@ package family_tree;
 import family_tree.family_tree.FamilyTree;
 import family_tree.human.Gender;
 import family_tree.human.Human;
+import family_tree.reader_writer.WriteReadFile;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Main {
     public static  void main(String[] args) {
+        String fileWay = "tree.txt";
+
         FamilyTree tree = testTree();
         System.out.println(tree);
+        save(tree, fileWay);
+    }
+
+    static FamilyTree read(String fileWay){
+        WriteReadFile readFile = new WriteReadFile();
+        return (FamilyTree) readFile.read(fileWay);
+    }
+
+    static void save(FamilyTree familyTree, String fileWay){
+        WriteReadFile writeFile = new WriteReadFile();
+        writeFile.save((Serializable) familyTree, fileWay);
     }
 
     static FamilyTree testTree(){
