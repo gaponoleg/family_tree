@@ -10,11 +10,14 @@ import java.time.LocalDate;
 
 public class Main {
     public static  void main(String[] args) {
-        String fileWay = "tree.txt";
+
 
         FamilyTree tree = testTree();
         System.out.println(tree);
-        save(tree, fileWay);
+        tree.sortByName();
+        System.out.println(tree);
+        tree.sortByAge();
+        System.out.println(tree);
     }
 
     static FamilyTree read(String fileWay){
@@ -50,4 +53,6 @@ public class Main {
 
         return tree;
     }
+
+
 }
