@@ -1,13 +1,14 @@
 package family_tree.human;
 
 
-import java.io.Serializable;
+import family_tree.family_tree.FamilyItem;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Human implements Serializable, Comparable<Human> {
+public class Human implements Comparable<Human>, FamilyItem {
     private long id;
     private String name;
     private Gender gender;
@@ -15,7 +16,7 @@ public class Human implements Serializable, Comparable<Human> {
     private LocalDate deathDate;
     private Human mother;
     private Human father;
-    private List<Human> children;
+    private final List<Human> children;
     private Human spouse;
 
     public Human(String name, Gender gender, LocalDate birthDate, LocalDate deathDate,
@@ -80,7 +81,7 @@ public class Human implements Serializable, Comparable<Human> {
         return father;
     }
 
-    public List<Human> getParents() {
+    public Object[] getParents() {
         List<Human> list = new ArrayList<>(2);
         if (father != null) {
             list.add(father);
@@ -88,7 +89,7 @@ public class Human implements Serializable, Comparable<Human> {
         if (mother != null) {
             list.add(mother);
         }
-        return list;
+        return new List[]{list};
     }
 
     public int getAge() {
@@ -112,6 +113,11 @@ public class Human implements Serializable, Comparable<Human> {
         return spouse;
     }
 
+    @Override
+    public void setSpouse(Object human2) {
+
+    }
+
     public String getName() {
         return name;
     }
@@ -132,8 +138,13 @@ public class Human implements Serializable, Comparable<Human> {
         return deathDate;
     }
 
-    public List<Human> getChildren() {
-        return children;
+    public Object[] getChildren() {
+        return new List[]{children};
+    }
+
+    @Override
+    public void addParent(Object human) {
+
     }
 
     public void setBirthDate(LocalDate birthDate) {
