@@ -1,36 +1,26 @@
 package family_tree;
 
-import family_tree.family_tree.FamilyTree;
-import family_tree.human.Gender;
-import family_tree.human.Human;
-import family_tree.reader_writer.WriteReadFile;
+import family_tree.model.family_tree.family_tree.FamilyTree;
+import family_tree.model.family_tree.human.Gender;
+import family_tree.model.family_tree.human.Human;
+import family_tree.model.family_tree.reader_writer.WriteReadFile;
+import family_tree.view.ConsoleUI;
+import family_tree.view.MainMenu;
+import family_tree.view.View;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Main {
     public static  void main(String[] args) {
+        FamilyTree familyTree = testTree();
 
-
-        FamilyTree tree = testTree();
-        System.out.println(tree);
-        tree.sortByName();
-        System.out.println(tree);
-        tree.sortByAge();
-        System.out.println(tree);
-    }
-
-    static FamilyTree read(String fileWay){
-        WriteReadFile readFile = new WriteReadFile();
-        return (FamilyTree) readFile.read(fileWay);
-    }
-
-    static void save(FamilyTree familyTree, String fileWay){
-        WriteReadFile writeFile = new WriteReadFile();
-        writeFile.save((Serializable) familyTree, fileWay);
+        View view = new ConsoleUI();
+        view.start();
     }
 
     static FamilyTree testTree(){
+
         FamilyTree tree = new FamilyTree();
 
         Human oleg = new Human("Олег", Gender.Male, LocalDate.of(2008, 6, 25));
